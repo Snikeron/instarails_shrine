@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <h1>Instarails with Shrine!</h1>
+    
+    <div>
+        <% if user_signed_in? %>
+            <div>
+                <%= link_to('New Submission', new_photo_path, class: 'btn btn-primary active') %>
+            </div>
+            <div class="row">
+                <%= render 'card' %>
+            </div>
+        <% else %>
+            <div>
+                <p>Please sign in.</p>
+            </div>
+        <% end %>
+    </div>
+</div>

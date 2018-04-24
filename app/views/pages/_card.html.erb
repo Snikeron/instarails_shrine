@@ -1,0 +1,21 @@
+<% @photos.each do |p| %>
+    <div class=" col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="card m-4 bg-light" style="width: 18rem;">
+            <div class="pt-4 mx-auto d-block">
+                <%= link_to(image_tag(p.image_url(:medium), width:"250"), photo_path(p.id)) %>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-center"><%= p.description %></h5>
+            </div>
+            <div class="card-footer">
+                <p class="text-center">
+                    <% liked = p.liked_by?(current_user)%>
+                    <%# Ternary Operator .... %>
+                    <%= link_to(liked ? fa_icon('heart') : fa_icon('heart-o'), like_photo_path(p), method: :patch) %>
+                    <%= p.likers.count %>
+                </p>
+                <p class="text-muted text-center"><%= time_ago_in_words(p.created_at) %> ago</p>
+            </div>
+        </div>
+    </div>
+<% end %>
